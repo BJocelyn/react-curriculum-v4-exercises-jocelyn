@@ -7,9 +7,13 @@ export default function BugStrictMode() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -20,4 +24,8 @@ export default function BugStrictMode() {
   );
 }
 
-// Write your explanation of how StrictMode helps us catch this bug
+/*
+Explanation:
+StrictMode helped me find that the interval was not being cleaned up.
+clearInterval prevents multiple timers from running.
+*/

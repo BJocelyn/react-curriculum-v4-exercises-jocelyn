@@ -6,7 +6,8 @@ export default function BugEventPropagation() {
     alert("RED BOX CLICKED ❌ Don't show me!");
   }
 
-  function handleInnerClick() {
+  function handleInnerClick(event) {
+    event.stopPropagation();
     alert('Button Clicked ✅');
   }
 
@@ -22,3 +23,9 @@ export default function BugEventPropagation() {
     </>
   );
 }
+
+/*
+Explanation:
+event.stopPropagation() prevent the click event from reaching the outer div. 
+Without it, clicking the button would also trigger the div's click event.
+*/
